@@ -1,3 +1,23 @@
+function checkPassword(){
+
+const password =
+document.getElementById("passwordInput").value;
+
+if(password === "Emandi"){
+
+document.getElementById("passwordScreen").style.display="none";
+
+document.getElementById("mainContent").style.display="block";
+
+}
+else{
+
+document.getElementById("error").innerHTML =
+"Wrong password ❤️";
+
+}
+
+}
 function toggleMessage(id){
 
 const msg=document.getElementById(id);
