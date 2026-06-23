@@ -108,9 +108,13 @@ gap:20px;
 }
 
 .gallery img{
-width:100%;
+width:80%;
+max-width:300px;
+height:auto;
 border-radius:20px;
 box-shadow:0 10px 25px rgba(0,0,0,0.08);
+display:block;
+margin:auto;
 }
 
 .admire{
