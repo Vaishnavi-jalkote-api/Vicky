@@ -8,7 +8,11 @@ if(password === "Emandi"){
 document.getElementById("passwordScreen").style.display="none";
 
 document.getElementById("mainContent").style.display="block";
-
+window.scrollTo({
+top: 0,
+left: 0,
+behavior: "instant"
+});
 }
 else{
 
