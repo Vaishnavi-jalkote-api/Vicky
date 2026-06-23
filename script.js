@@ -78,5 +78,6 @@ petal.remove();
 },12000);
 
 }
-
+if(document.getElementById("passwordScreen")){
 setInterval(createPetal,1000);
+}
