@@ -167,3 +167,43 @@ transform:translateY(110vh) rotate(360deg);
 opacity:0;
 }
 }
+#passwordScreen{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(to bottom,#fffaf5,#f5ede1);
+}
+
+.password-box{
+background:white;
+padding:40px;
+border-radius:25px;
+text-align:center;
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
+width:90%;
+max-width:400px;
+}
+
+.password-box input{
+width:100%;
+padding:12px;
+margin-top:15px;
+border:1px solid #ddd;
+border-radius:10px;
+}
+
+.password-box button{
+margin-top:15px;
+padding:12px 25px;
+border:none;
+background:#7c5c3b;
+color:white;
+border-radius:20px;
+cursor:pointer;
+}
+
+#error{
+color:red;
+margin-top:10px;
+}
