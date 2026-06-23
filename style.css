@@ -175,38 +175,39 @@ align-items:center;
 
 background:
 linear-gradient(
-rgba(255,250,245,0.45),
-rgba(245,237,225,0.45)
-);
+rgba(255,245,245,0.35),
+rgba(255,245,245,0.35)
+),
+url("images/Background.png");
 
-position:relative;
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+
 overflow:hidden;
+position:relative;
 }
-
 .password-box{
 
-background:rgba(255,255,255,0.45);
+background:rgba(255,255,255,0.25);
 
-backdrop-filter:blur(15px);
+backdrop-filter:blur(25px);
+-webkit-backdrop-filter:blur(25px);
 
--webkit-backdrop-filter:blur(15px);
+padding:50px;
 
-padding:45px;
-
-border-radius:30px;
+border-radius:35px;
+width:90%;
+max-width:550px;
 
 text-align:center;
 
-box-shadow:0 15px 40px rgba(0,0,0,0.1);
+border:1px solid rgba(255,255,255,0.3);
 
-width:90%;
-
-max-width:500px;
-
-border:1px solid rgba(255,255,255,0.4);
+box-shadow:
+0 20px 50px rgba(0,0,0,0.15);
 
 }
-
 .password-box input{
 width:100%;
 padding:12px;
@@ -216,13 +217,31 @@ border-radius:10px;
 }
 
 .password-box button{
-margin-top:15px;
-padding:12px 25px;
+
+padding:15px 40px;
+
 border:none;
-background:#7c5c3b;
+
+border-radius:50px;
+
+background:#8c5f3d;
+
 color:white;
-border-radius:20px;
+
+font-size:16px;
+
 cursor:pointer;
+
+transition:.3s;
+
+margin-top:20px;
+
+}
+
+.password-box button:hover{
+
+transform:translateY(-3px);
+
 }
 
 #error{
@@ -231,18 +250,19 @@ margin-top:10px;
 }
 .quote{
 
-font-size:1.4rem;
+font-size:32px;
 
 font-style:italic;
 
-color:#7c5c3b;
+color:#7a4d3b;
 
-margin-bottom:25px;
+line-height:1.5;
 
-line-height:1.6;
+margin-bottom:30px;
+
+font-family:cursive;
 
 }
-
 .bottom-quote{
 
 margin-top:20px;
