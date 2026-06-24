@@ -102,19 +102,20 @@ margin-top:15px;
 }
 
 .gallery{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+display:flex;
+justify-content:center;
 gap:20px;
+flex-wrap:wrap;
+margin-top:30px;
 }
 
 .gallery img{
-width:80%;
-max-width:300px;
-height:auto;
-border-radius:20px;
-box-shadow:0 10px 25px rgba(0,0,0,0.08);
-display:block;
-margin:auto;
+width:180px;
+height:220px;
+object-fit:cover;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,0.12);
+transition:0.3s;
 }
 
 .admire{
