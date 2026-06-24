@@ -397,14 +397,6 @@ z-index:1;
 }
 
 .admire-card{
-
 position:relative;
 z-index:2;
-}
-
-.admire-card{
-color:white;
-}
-.card1::before{
-background-image:url("images/imagescard1.jpeg");
 }
