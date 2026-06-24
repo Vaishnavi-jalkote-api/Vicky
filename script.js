@@ -62,28 +62,27 @@ document.getElementById("randomMessage").innerHTML=random;
 
 }
 
-function createPetal(){
+function createHeart(){
 
-const petal=document.createElement("div");
+const heart=document.createElement("div");
 
-petal.classList.add("petal");
+heart.classList.add("heart-float");
 
-petal.innerHTML="🌸";
+heart.innerHTML="💗";
 
-petal.style.left=Math.random()*100+"vw";
+heart.style.left=Math.random()*100+"vw";
 
-petal.style.fontSize=(Math.random()*15+15)+"px";
+heart.style.fontSize=(Math.random()*20+15)+"px";
 
-petal.style.animationDuration=
+heart.style.animationDuration=
 (Math.random()*5+8)+"s";
 
-document.body.appendChild(petal);
+document.body.appendChild(heart);
 
 setTimeout(()=>{
-petal.remove();
+heart.remove();
 },12000);
 
 }
-if(document.getElementById("passwordScreen")){
-setInterval(createPetal,1000);
-}
+
+setInterval(createHeart,800);
