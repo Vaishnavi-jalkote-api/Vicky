@@ -7,7 +7,7 @@ if(password === "Emandi"){
 
 document.getElementById("passwordScreen").style.display="none";
 
-document.getElementById("mainContent").style.display="block";
+document.getElementById("birthdayPage").style.display="flex";
   setTimeout(() => {
 window.scrollTo({
 top: 0,
@@ -87,3 +87,12 @@ heart.remove();
 }
 
 setInterval(createHeart,800);
+function openWebsite(){
+
+document.getElementById("birthdayPage").style.display="none";
+
+document.getElementById("mainContent").style.display="block";
+
+window.scrollTo(0,0);
+
+}
