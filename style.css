@@ -395,7 +395,15 @@ background:rgba(0,0,0,0.25);
 z-index:1;
 
 }
+.admire-card{
 
+position:relative;
+z-index:2;
+}
+
+.admire-card{
+color:white;
+}
 .admire-card{
 position:relative;
 z-index:2;
