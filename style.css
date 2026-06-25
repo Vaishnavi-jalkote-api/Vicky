@@ -355,31 +355,34 @@ rotate(360deg);
 opacity:0;
 }
 }
-.admire-card::before{
+.admire-card{
+height:180px;
 
-content:"";
+display:flex;
+align-items:center;
+justify-content:center;
 
-position:absolute;
+text-align:center;
 
-top:0;
-left:0;
+padding:20px;
 
-width:100%;
-height:100%;
+border-radius:20px;
+
+color:white;
+
+font-weight:600;
+
+font-size:18px;
 
 background-size:cover;
 background-position:center;
 
-filter:blur(2px);
+position:relative;
 
-transform:scale(1.1);
-
-z-index:0;
-
+overflow:hidden;
 }
 
-.admire-card::after{
-
+.admire-card::before{
 content:"";
 
 position:absolute;
@@ -391,20 +394,9 @@ width:100%;
 height:100%;
 
 background:rgba(0,0,0,0.25);
-
-z-index:1;
-
-}
-.admire-card{
-
-position:relative;
-z-index:2;
 }
 
-.admire-card{
-color:white;
-}
-.admire-card{
+.admire-card span{
 position:relative;
 z-index:2;
 }
