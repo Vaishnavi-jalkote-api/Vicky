@@ -423,7 +423,8 @@ position:relative;
 
 .birthday-overlay{
 
-background:rgba(0,0,0,0.45);
+background: rgba(255,255,255,0.75);
+backdrop-filter: blur(3px);
 
 padding:50px;
 
@@ -431,7 +432,7 @@ border-radius:30px;
 
 text-align:center;
 
-color:white;
+color:#7c5c3b;
 
 max-width:700px;
 
