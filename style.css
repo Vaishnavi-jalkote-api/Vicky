@@ -423,36 +423,42 @@ position:relative;
 
 .birthday-overlay{
 
-background: rgba(255,255,255,0.35);
-backdrop-filter: blur(4px);
+background:rgba(255,255,255,0.55);
 
-padding:50px;
+backdrop-filter:blur(8px);
+
+max-width:650px;
+
+padding:40px;
 
 border-radius:30px;
 
 text-align:center;
 
-color:#7c5c3b;
-
-max-width:700px;
-
-backdrop-filter:blur(2px);
-
 }
 
 .birthday-overlay h1{
-font-size:2.2rem;
-line-height:1.3;
-}
 
+color:#7c5c3b;
+
+font-size:2.8rem;
+
+margin-bottom:20px;
+
+line-height:1.3;
+
+}
 .birthday-overlay p{
+
+color:#444;
+
+font-size:1.2rem;
 
 line-height:1.8;
 
-margin-bottom:30px;
+margin-bottom:25px;
 
 }
-
 .birthday-overlay button{
 
 padding:15px 35px;
