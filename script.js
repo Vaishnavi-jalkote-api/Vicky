@@ -8,6 +8,7 @@ if(password === "2710"){
 document.getElementById("passwordScreen").style.display="none";
 
 document.getElementById("birthdayPage").style.display="flex";
+  startBirthdayAnimation();
   setTimeout(() => {
 window.scrollTo({
 top: 0,
@@ -94,5 +95,30 @@ document.getElementById("birthdayPage").style.display="none";
 document.getElementById("mainContent").style.display="block";
 
 window.scrollTo(0,0);
+
+}
+function startBirthdayAnimation(){
+
+const first=document.getElementById("birthdayText1");
+const second=document.getElementById("birthdayText2");
+const third=document.getElementById("birthdayText3");
+
+first.classList.add("active");
+
+setTimeout(()=>{
+
+first.classList.remove("active");
+
+second.classList.add("active");
+
+},3000);
+
+setTimeout(()=>{
+
+second.classList.remove("active");
+
+third.classList.add("active");
+
+},6500);
 
 }
