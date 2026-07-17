@@ -404,76 +404,128 @@ z-index:2;
 background-image:url("images/imagescard1.jpeg");
 }
 #birthdayPage{
-height:100vh;
+
 display:none;
+
 justify-content:center;
 align-items:center;
+
+height:100vh;
+
 background-image:url("images/Vivek.jpeg");
+
 background-size:cover;
+
 background-position:center;
-position:relative;
-}
-.birthday-overlay{
-
-width:80%;
-max-width:900px;
-
-padding:50px;
-
-border-radius:30px;
-
-text-align:center;
 
 position:relative;
 
 overflow:hidden;
 
-color:white;
-
 }
-.birthday-overlay h1{
+
+.birthday-overlay{
+
+width:100%;
+height:100%;
+
+display:flex;
+
+justify-content:center;
+align-items:center;
 
 position:relative;
-z-index:2;
+
+}
+
+.birthday-overlay::before{
+
+content:"";
+
+position:absolute;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+background:rgba(0,0,0,0.35);
+
+}
+
+.birthday-message{
+
+position:absolute;
+
+text-align:center;
+
+color:white;
 
 font-size:3rem;
 
-color:white;
+font-weight:600;
 
-margin-bottom:25px;
+opacity:0;
 
-}
-.birthday-overlay p{
+transition:opacity 1.5s ease;
 
-position:relative;
 z-index:2;
 
-color:white;
-
-font-size:1.25rem;
-
-line-height:1.8;
-
-margin-bottom:30px;
+padding:20px;
 
 }
-.birthday-overlay button{
 
-position:relative;
-z-index:2;
+.birthday-message.active{
 
-padding:15px 35px;
+opacity:1;
+
+}
+
+#birthdayText2{
+
+font-size:2.8rem;
+
+line-height:1.4;
+
+}
+
+#birthdayText3{
+
+font-size:2rem;
+
+line-height:1.6;
+
+}
+
+#birthdayText3 button{
+
+margin-top:30px;
+
+padding:15px 40px;
+
+font-size:18px;
 
 border:none;
 
-border-radius:30px;
+border-radius:40px;
 
 background:white;
 
 color:#7c5c3b;
 
+cursor:pointer;
+
 font-weight:bold;
 
-cursor:pointer;
+transition:.3s;
+
+}
+
+#birthdayText3 button:hover{
+
+transform:scale(1.05);
+
+background:#f7f1ea;
 
 }
