@@ -584,3 +584,10 @@ transform:scale(1.05);
 background:#f7f1ea;
 
 }
+.birthday-message span{
+
+display:block;
+
+margin:15px 0;
+
+}
