@@ -110,18 +110,12 @@ margin-top:30px;
 }
 
 .gallery img{
-width:220px;
-height:260px;
+width:180px;
+height:220px;
 object-fit:cover;
 border-radius:15px;
 box-shadow:0 10px 25px rgba(0,0,0,0.12);
-transition:all 0.3s ease;
-cursor:pointer;
-}
-
-.gallery img:hover{
-transform:translateY(-6px) scale(1.03);
-box-shadow:0 15px 30px rgba(0,0,0,0.22);
+transition:0.3s;
 }
 
 .admire{
