@@ -424,6 +424,21 @@ z-index:2;
 .card1{
 background-image:url("images/imagescard1.jpeg");
 }
+.card2{
+background-image:url("images/imagescard2.jpeg");
+}
+.card3{
+/* background-image:url("images/imagescard3.jpeg"); */
+}
+.card4{
+/* background-image:url("images/imagescard4.jpeg"); */
+}
+.card5{
+/* background-image:url("images/imagescard5.jpeg"); */
+}
+.card6{
+/* background-image:url("images/imagescard6.jpeg"); */
+}
 #birthdayPage{
 
 display:none;
