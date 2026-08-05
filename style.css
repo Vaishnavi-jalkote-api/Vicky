@@ -60,7 +60,28 @@ max-width:700px;
 line-height:1.8;
 }
 
-.btn{
+.top-quote{
+font-family:cursive;
+font-size:1.5rem;
+color:#b36b7f;
+margin-bottom:15px;
+font-style:italic;
+}
+
+.hero-text{
+max-width:700px;
+margin:0 auto;
+font-size:1.1rem;
+color:#444;
+}
+
+.hero-text p{
+margin-bottom:15px;
+max-width:700px;
+line-height:1.8;
+}
+
+.btn, .hero-btn{
 display:inline-block;
 margin-top:25px;
 padding:14px 30px;
