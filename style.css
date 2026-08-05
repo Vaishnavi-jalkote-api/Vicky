@@ -435,6 +435,9 @@ background-image:url("images/imagescard4.jpeg");
 }
 .card5{
 background-image:url("images/imagescard5.jpeg");
+background-size: contain;
+background-repeat: no-repeat;
+background-position: center;
 }
 .card6{
 background-image:url("images/imagescard6.jpeg");
