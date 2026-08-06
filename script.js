@@ -96,6 +96,7 @@ document.getElementById("mainContent").style.display="block";
 
 window.scrollTo(0,0);
 
+startTypewriter(); // Trigger the typewriter effect
 }
 function startBirthdayAnimation(){
 
@@ -121,4 +122,45 @@ third.classList.add("active");
 
 },6500);
 
+}
+
+function startTypewriter() {
+    const p1 = document.getElementById("typewriter1");
+    const p2 = document.getElementById("typewriter2");
+    
+    if (!p1 || !p2) return;
+    
+    const text1 = p1.getAttribute("data-text");
+    const text2 = p2.getAttribute("data-text");
+    
+    p1.innerHTML = "";
+    p2.innerHTML = "";
+    
+    p1.classList.add("typing");
+
+    let i = 0;
+    function typeWriter1() {
+        if (i < text1.length) {
+            p1.innerHTML += text1.charAt(i);
+            i++;
+            setTimeout(typeWriter1, 45); // Adjust typing speed here
+        } else {
+            p1.classList.remove("typing");
+            p2.classList.add("typing");
+            setTimeout(() => {
+                let j = 0;
+                function typeWriter2() {
+                    if (j < text2.length) {
+                        p2.innerHTML += text2.charAt(j);
+                        j++;
+                        setTimeout(typeWriter2, 45);
+                    }
+                }
+                typeWriter2();
+            }, 600); // Pause between paragraphs
+        }
+    }
+    
+    // Start after a slight delay so the page transitions smoothly first
+    setTimeout(typeWriter1, 800);
 }

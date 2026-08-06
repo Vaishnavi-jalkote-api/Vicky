@@ -659,3 +659,14 @@ display:block;
 margin:15px 0;
 
 }
+
+/* Typewriter cursor effect */
+.typing::after {
+    content: '|';
+    animation: blink 1s step-end infinite;
+    color: #7c5c3b;
+    margin-left: 2px;
+}
+@keyframes blink {
+    50% { opacity: 0; }
+}
