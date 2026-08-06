@@ -38,15 +38,6 @@ msg.style.display="block";
 
 }
 
-const secretNotes = [
-    "Someone is very proud of you ❤️",
-    "Thank you for making me smile.",
-    "You are loved more than you know.",
-    "A certain girl is thinking about you right now ❤️",
-    "Your smile is one of my favourite things.",
-    "Life feels brighter with you in it."
-];
-
 let holdTimer;
 let isHolding = false;
 
@@ -83,7 +74,7 @@ function triggerMagic() {
     
     // Reveal message
     const msg = document.getElementById("heartbeatMessage");
-    msg.innerHTML = secretNotes[Math.floor(Math.random() * secretNotes.length)];
+    msg.innerHTML = "Every time your heart beats, just know mine is beating for you too. ❤️";
     msg.classList.add("revealed");
     
     document.getElementById("giantHeart").classList.remove("beating");
