@@ -158,17 +158,15 @@ Ee prapancham lo okaru unnaru, meeru unnanduku chaala happy ga feel avuthunnaru.
 
 <section>
 
-<h2>🎁 Secret Smile Button</h2>
+<h2>💖 The Heartbeat</h2>
 
-<div class="secret-box">
+<div class="heartbeat-container">
 
-<p>Click whenever you need a smile ❤️</p>
+<p class="heartbeat-instruction">Press and hold when you miss me...</p>
 
-<button class="secret-btn" onclick="showMessage()">
-Click Here
-</button>
+<div class="giant-heart" id="giantHeart" onpointerdown="startHeartbeat()" onpointerup="stopHeartbeat()" onpointerleave="stopHeartbeat()">❤️</div>
 
-<div id="randomMessage"></div>
+<div id="heartbeatMessage" class="heartbeat-message"></div>
 
 </div>
 

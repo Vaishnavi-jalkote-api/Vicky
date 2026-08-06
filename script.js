@@ -38,29 +38,55 @@ msg.style.display="block";
 
 }
 
-const messages=[
-
-"Someone is very proud of you ❤️",
-
-"Thank you for making me smile.",
-
-"You are loved more than you know.",
-
-"A certain girl is thinking about you right now ❤️",
-
-"Your smile is one of my favourite things.",
-
-"Life feels brighter with you in it."
-
+const secretNotes = [
+    "Someone is very proud of you ❤️",
+    "Thank you for making me smile.",
+    "You are loved more than you know.",
+    "A certain girl is thinking about you right now ❤️",
+    "Your smile is one of my favourite things.",
+    "Life feels brighter with you in it."
 ];
 
-function showMessage(){
+let holdTimer;
+let isHolding = false;
 
-const random=
-messages[Math.floor(Math.random()*messages.length)];
+function startHeartbeat() {
+    isHolding = true;
+    const heart = document.getElementById("giantHeart");
+    const msg = document.getElementById("heartbeatMessage");
+    
+    heart.classList.add("beating");
+    msg.classList.remove("revealed");
+    
+    if(navigator.vibrate) navigator.vibrate([50, 50, 50]); // Initial heartbeat pulse
+    
+    holdTimer = setTimeout(() => {
+        if(isHolding) {
+            triggerMagic();
+        }
+    }, 1500); // Hold for 1.5 seconds to reveal
+}
 
-document.getElementById("randomMessage").innerHTML=random;
+function stopHeartbeat() {
+    isHolding = false;
+    clearTimeout(holdTimer);
+    document.getElementById("giantHeart").classList.remove("beating");
+}
 
+function triggerMagic() {
+    if(navigator.vibrate) navigator.vibrate([100, 50, 100, 50, 200]); // Magic success vibration
+    
+    // Spawn tiny hearts burst quickly
+    for(let i=0; i<15; i++) {
+        setTimeout(createHeart, i * 80);
+    }
+    
+    // Reveal message
+    const msg = document.getElementById("heartbeatMessage");
+    msg.innerHTML = secretNotes[Math.floor(Math.random() * secretNotes.length)];
+    msg.classList.add("revealed");
+    
+    document.getElementById("giantHeart").classList.remove("beating");
 }
 
 function createHeart(){
