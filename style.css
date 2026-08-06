@@ -144,7 +144,10 @@ box-shadow:0 10px 25px rgba(0,0,0,0.08);
 
 .message{
 display:none;
-margin-top:15px;
+margin-top:20px;
+padding-top:15px;
+border-top:2px dashed rgba(124, 92, 59, 0.2);
+line-height:1.6;
 }
 
 @keyframes fadeInMessage {
