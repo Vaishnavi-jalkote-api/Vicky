@@ -235,7 +235,8 @@ display:flex;
 justify-content:center;
 align-items:center;
 
-background:
+background-color: #faf7f2;
+background-image:
 linear-gradient(
 rgba(255,245,245,0.35),
 rgba(255,245,245,0.35)
