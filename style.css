@@ -138,20 +138,23 @@ color:#7c5c3b;
 
 .envelope-wrapper {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: center;
     cursor: pointer;
     perspective: 1000px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
+    margin-top: 70px;
     -webkit-tap-highlight-color: transparent;
 }
 
 .envelope-title {
     font-weight: 600;
     color: #7c5c3b;
-    margin-bottom: 15px;
+    margin-top: 20px;
+    margin-bottom: 0;
     z-index: 10;
     font-size: 1.1rem;
+    text-align: center;
 }
 
 .env-container {
