@@ -25,17 +25,8 @@ document.getElementById("error").innerHTML =
 }
 
 }
-function toggleMessage(id){
-
-const msg=document.getElementById(id);
-
-if(msg.style.display==="block"){
-msg.style.display="none";
-}
-else{
-msg.style.display="block";
-}
-
+function openLetter(element) {
+    element.classList.toggle('open');
 }
 
 let holdTimer;

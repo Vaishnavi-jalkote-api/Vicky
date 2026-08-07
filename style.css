@@ -128,26 +128,113 @@ margin-bottom:30px;
 color:#7c5c3b;
 }
 
-.envelopes{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
+.envelopes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 40px;
 }
 
-.envelope{
-background:white;
-padding:25px;
-border-radius:20px;
-cursor:pointer;
-box-shadow:0 10px 25px rgba(0,0,0,0.08);
+.envelope-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    perspective: 1000px;
+    margin-bottom: 20px;
+    -webkit-tap-highlight-color: transparent;
 }
 
-.message{
-display:none;
-margin-top:20px;
-padding-top:15px;
-border-top:2px dashed rgba(124, 92, 59, 0.2);
-line-height:1.6;
+.envelope-title {
+    font-weight: 600;
+    color: #7c5c3b;
+    margin-bottom: 15px;
+    z-index: 10;
+    font-size: 1.1rem;
+}
+
+.env-container {
+    position: relative;
+    width: 260px;
+    height: 180px;
+    transition: transform 0.4s ease;
+}
+
+.envelope-wrapper:hover .env-container {
+    transform: translateY(-5px);
+}
+
+.env-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #d1bfae;
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.env-front {
+    position: absolute;
+    width: 0;
+    height: 0;
+    z-index: 3;
+    border-left: 130px solid #e8d5c4;
+    border-right: 130px solid #e8d5c4;
+    border-bottom: 100px solid #f2e2d2;
+    border-top: 80px solid transparent;
+    bottom: 0;
+    border-radius: 0 0 8px 8px;
+}
+
+.env-flap {
+    position: absolute;
+    top: 0;
+    width: 0;
+    height: 0;
+    z-index: 4;
+    border-left: 130px solid transparent;
+    border-right: 130px solid transparent;
+    border-top: 100px solid #dcc9b6;
+    transform-origin: top;
+    transition: transform 0.5s ease-in-out;
+}
+
+.env-letter {
+    position: absolute;
+    background: #fffdfa;
+    width: 90%;
+    height: 90%;
+    left: 5%;
+    bottom: 5%;
+    border-radius: 5px;
+    padding: 20px;
+    z-index: 2;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.2s; /* delay so flap opens first */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 0.95rem;
+    color: #5a432b;
+    border: 1px solid #eee;
+    font-weight: 500;
+    line-height: 1.6;
+}
+
+/* Open State Animations */
+.envelope-wrapper.open .env-flap {
+    transform: rotateX(180deg);
+    z-index: 1; /* drops behind letter */
+}
+
+.envelope-wrapper.open .env-letter {
+    transform: translateY(-80px);
+    z-index: 5;
+    height: 130%; /* Expand slightly so it can be read clearly */
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.4s; /* Wait for flap */
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
 }
 
 @keyframes fadeInMessage {
