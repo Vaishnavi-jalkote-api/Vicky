@@ -137,24 +137,29 @@ color:#7c5c3b;
 }
 
 .envelope-wrapper {
+    position: relative;
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     align-items: center;
     cursor: pointer;
     perspective: 1000px;
     margin-bottom: 40px;
-    margin-top: 70px;
+    margin-top: 50px;
     -webkit-tap-highlight-color: transparent;
 }
 
 .envelope-title {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
     font-weight: 600;
-    color: #7c5c3b;
-    margin-top: 20px;
-    margin-bottom: 0;
-    z-index: 10;
-    font-size: 1.1rem;
+    color: #8b5a2b;
+    z-index: 5;
+    font-size: 0.95rem;
     text-align: center;
+    width: 90%;
+    pointer-events: none;
 }
 
 .env-container {
