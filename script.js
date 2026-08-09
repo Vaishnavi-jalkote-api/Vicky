@@ -172,3 +172,85 @@ function startTypewriter() {
     // Start after a slight delay so the page transitions smoothly first
     setTimeout(typeWriter1, 800);
 }
+
+function triggerFinale() {
+    const star = document.getElementById('theStar');
+    const title = document.getElementById('finaleTitle');
+    
+    star.classList.add('shooting');
+    
+    if(navigator.vibrate) navigator.vibrate([100, 50, 100]); // Magic pulse
+    
+    setTimeout(() => {
+        star.style.display = 'none';
+        document.getElementById('theLocket').style.display = 'flex';
+        title.innerHTML = "I kept the best part for last...<br><span style='font-size:0.55em; color:#d1bfae; font-weight:normal; font-family:sans-serif; text-shadow:none;'>Tap the locket to open</span>";
+    }, 1000);
+}
+
+function openLocket() {
+    document.querySelector('.locket').classList.toggle('open');
+    document.getElementById('finaleMessage').classList.toggle('show');
+    if(navigator.vibrate) navigator.vibrate(50);
+}
+
+function initScratchCard() {
+    const canvas = document.getElementById('scratchCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    
+    // Fill the canvas with a silver foil
+    ctx.fillStyle = '#c0c0c0';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    // Add text "Scratch Here"
+    ctx.font = 'bold 24px sans-serif';
+    ctx.fillStyle = '#666';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('Scratch Here 🪙', canvas.width/2, canvas.height/2);
+
+    let isDrawing = false;
+
+    function getMousePos(evt) {
+        const rect = canvas.getBoundingClientRect();
+        const clientX = evt.touches ? evt.touches[0].clientX : evt.clientX;
+        const clientY = evt.touches ? evt.touches[0].clientY : evt.clientY;
+        
+        const scaleX = canvas.width / rect.width;
+        const scaleY = canvas.height / rect.height;
+
+        return {
+            x: (clientX - rect.left) * scaleX,
+            y: (clientY - rect.top) * scaleY
+        };
+    }
+
+    function scratch(evt) {
+        if (!isDrawing) return;
+        if (evt.cancelable) evt.preventDefault(); // Prevent scrolling on mobile while scratching
+        
+        const pos = getMousePos(evt);
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.beginPath();
+        ctx.arc(pos.x, pos.y, 25, 0, Math.PI * 2); // Eraser brush size
+        ctx.fill();
+    }
+
+    // Mouse events
+    canvas.addEventListener('mousedown', () => isDrawing = true);
+    canvas.addEventListener('mouseup', () => isDrawing = false);
+    canvas.addEventListener('mouseleave', () => isDrawing = false);
+    canvas.addEventListener('mousemove', scratch);
+    
+    // Touch events
+    canvas.addEventListener('touchstart', (e) => { isDrawing = true; scratch(e); }, {passive: false});
+    canvas.addEventListener('touchend', () => isDrawing = false);
+    canvas.addEventListener('touchmove', scratch, {passive: false});
+}
+
+document.addEventListener('DOMContentLoaded', initScratchCard);
+// Fallback if script loads after DOM is ready
+if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    initScratchCard();
+}
