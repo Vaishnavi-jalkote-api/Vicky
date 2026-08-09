@@ -106,16 +106,15 @@
 
 <div class="envelopes">
 
-    <div class="envelope-wrapper" onclick="openLetter(this)">
-        <div class="envelope-title">🎟️ Redeem for one free wish</div>
-        <div class="env-container">
-            <div class="env-back"></div>
-            <div class="env-letter">
-                <p>This is a digital coupon. Show this to me anytime, anywhere, and I have to grant you exactly one wish. No questions asked. Use it wisely! 😉</p>
+    <div class="scratch-wrapper">
+        <div class="scratch-container" id="scratchContainer">
+            <div class="scratch-content">
+                <h3>One Free Wish</h3>
+                <p>Show this to me anytime, anywhere, and I have to grant you exactly one wish. No questions asked. Use it wisely! 😉</p>
             </div>
-            <div class="env-front"></div>
-            <div class="env-flap"></div>
+            <canvas id="scratchCanvas" width="260" height="180"></canvas>
         </div>
+        <div class="scratch-title">🎟️ Scratch for your surprise</div>
     </div>
 
     <div class="envelope-wrapper" onclick="openLetter(this)">

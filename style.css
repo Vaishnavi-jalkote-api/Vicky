@@ -961,3 +961,74 @@ margin:15px 0;
     opacity: 1;
     transform: translateY(0);
 }
+
+/* Scratch Card Styles */
+.scratch-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+    margin-top: 50px;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.scratch-container {
+    position: relative;
+    width: 260px;
+    height: 180px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.scratch-content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, #fff1ba, #e8d0b3);
+    border: 3px solid #d4af37;
+    border-radius: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    text-align: center;
+    z-index: 1;
+}
+
+.scratch-content h3 {
+    font-family: 'Georgia', serif;
+    color: #8b5a2b;
+    margin-bottom: 10px;
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.scratch-content p {
+    font-family: 'Segoe Script', 'Apple Chancery', cursive;
+    color: #5a432b;
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.4;
+    margin: 0;
+}
+
+#scratchCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    cursor: crosshair;
+    border-radius: 10px;
+}
+
+.scratch-title {
+    font-weight: 600;
+    color: #8b5a2b;
+    margin-top: 15px;
+    font-size: 0.95rem;
+    text-align: center;
+}
