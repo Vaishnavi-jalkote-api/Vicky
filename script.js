@@ -151,7 +151,7 @@ function startTypewriter() {
         if (i < text1.length) {
             p1.innerHTML += text1.charAt(i);
             i++;
-            setTimeout(typeWriter1, 45); // Adjust typing speed here
+            setTimeout(typeWriter1, 75); // Slower typing speed for readability
         } else {
             p1.classList.remove("typing");
             p2.classList.add("typing");
@@ -161,7 +161,7 @@ function startTypewriter() {
                     if (j < text2.length) {
                         p2.innerHTML += text2.charAt(j);
                         j++;
-                        setTimeout(typeWriter2, 45);
+                        setTimeout(typeWriter2, 75);
                     }
                 }
                 typeWriter2();
