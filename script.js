@@ -169,8 +169,8 @@ function startTypewriter() {
         }
     }
     
-    // Start after a slight delay so the page transitions smoothly first
-    setTimeout(typeWriter1, 800);
+    // Start after a 15-second delay to allow the user to read the top quote
+    setTimeout(typeWriter1, 15000);
 }
 
 let sparkleTimer;
