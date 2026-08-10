@@ -7,8 +7,7 @@ if(password === "2710"){
 
 document.getElementById("passwordScreen").style.display="none";
 
-document.getElementById("birthdayPage").style.display="flex";
-  startBirthdayAnimation();
+document.getElementById("giftScreen").style.display="flex";
   setTimeout(() => {
 window.scrollTo({
 top: 0,
@@ -299,4 +298,34 @@ document.addEventListener('DOMContentLoaded', initScratchCard);
 // Fallback if script loads after DOM is ready
 if (document.readyState === 'complete' || document.readyState === 'interactive') {
     initScratchCard();
+}
+
+function openGift() {
+    document.querySelector('.gift-box').classList.add('open');
+    if(navigator.vibrate) navigator.vibrate([100, 50, 100]); // Magic vibration
+    
+    // Confetti explosion
+    const emojis = ['🎉', '✨', '💖', '🎈'];
+    const container = document.querySelector('.gift-box-container');
+    for(let i=0; i<30; i++) {
+        const p = document.createElement('div');
+        p.classList.add('particle');
+        p.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+        const angle = Math.random() * Math.PI * 2;
+        const distance = Math.random() * 300 + 100;
+        p.style.setProperty('--tx', `${Math.cos(angle) * distance}px`);
+        p.style.setProperty('--ty', `${Math.sin(angle) * distance - 200}px`); // Burst upwards
+        p.style.left = '50%';
+        p.style.top = '50%';
+        p.style.fontSize = `${Math.random() * 20 + 15}px`;
+        container.appendChild(p);
+    }
+    
+    // Transition to main website
+    setTimeout(() => {
+        document.getElementById('giftScreen').style.display = 'none';
+        document.getElementById('mainContent').style.display = 'block';
+        window.scrollTo(0,0);
+        startTypewriter();
+    }, 1500);
 }
