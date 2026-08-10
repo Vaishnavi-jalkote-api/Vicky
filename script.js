@@ -245,16 +245,16 @@ function initScratchCard() {
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     
-    // Fill the canvas with a silver foil
-    ctx.fillStyle = '#c0c0c0';
+    // Fill the canvas with a warm, aesthetic rose-gold/beige foil to match the website
+    ctx.fillStyle = '#e3c6a8';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     
-    // Add text "Scratch Here"
-    ctx.font = 'bold 24px sans-serif';
-    ctx.fillStyle = '#666';
+    // Add text "Scratch here for surprise"
+    ctx.font = 'bold 18px "Georgia", serif';
+    ctx.fillStyle = '#8b5a2b';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText('Scratch Here 🪙', canvas.width/2, canvas.height/2);
+    ctx.fillText('Scratch here for surprise', canvas.width/2, canvas.height/2);
 
     let isDrawing = false;
 
