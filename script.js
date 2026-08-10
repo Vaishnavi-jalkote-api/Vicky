@@ -169,8 +169,8 @@ function startTypewriter() {
         }
     }
     
-    // Start after a 15-second delay to allow the user to read the top quote
-    setTimeout(typeWriter1, 15000);
+    // Start after a 10-second delay to allow the user to read the top quote
+    setTimeout(typeWriter1, 10000);
 }
 
 let sparkleTimer;
