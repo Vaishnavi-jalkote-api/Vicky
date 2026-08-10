@@ -192,27 +192,21 @@
 
 <section id="heart">
 
-<div class="grand-finale" id="grandFinale">
-    <h2 id="finaleTitle" style="margin-bottom: 40px;">🌟 Make a wish for this year...</h2>
-    
-    <div class="finale-container">
-        <!-- The Star -->
-        <div class="shooting-star" id="theStar" onclick="triggerFinale()">✨</div>
-        
-        <!-- The Locket (Hidden initially) -->
-        <div class="locket-wrapper" id="theLocket" style="display: none;" onclick="openLocket()">
-            <div class="locket">
-                <div class="locket-cover"></div>
-                <div class="locket-inside">
-                    <img src="images/Vivek.jpeg" alt="You and Me">
-                </div>
-            </div>
-            <div id="finaleMessage" class="finale-message">
-                You are my forever.<br>Happy Birthday my Emandi ❤️<br><br><i>- Yours, Vaishnavi</i>
-            </div>
-        </div>
+<div class="sparkle-finale" id="sparkleFinale">
+    <div class="finale-content" id="finaleContent">
+        <h2 id="sparkleInstruction" style="font-size: 1.5rem; margin-bottom: 20px;">Tap and hold to unlock the magic...</h2>
+        <button id="sparkleButton" 
+            onpointerdown="startSparkleHold()" 
+            onpointerup="stopSparkleHold()" 
+            onpointerleave="stopSparkleHold()">
+            ✨
+        </button>
     </div>
-</div>
+    <div id="finalMessage" class="final-revealed-message" style="display:none;">
+        <h1>Happy Birthday my Emandi.</h1>
+        <p>I love you forever.</p>
+        <p class="signature">- Yours, Vaishnavi ❤️</p>
+    </div>
 </div>
 </section>
 

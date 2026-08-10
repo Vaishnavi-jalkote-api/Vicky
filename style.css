@@ -822,12 +822,13 @@ margin:15px 0;
     50% { opacity: 0; }
 }
 
-/* Grand Finale Styles */
-.grand-finale {
+/* Sparkle Finale Styles */
+.sparkle-finale {
+    position: relative;
     text-align: center;
-    padding: 60px 20px;
-    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.8));
-    color: white;
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #fffafa 0%, #ffe4e1 100%);
+    color: #8b5a2b;
     min-height: 400px;
     display: flex;
     flex-direction: column;
@@ -835,131 +836,81 @@ margin:15px 0;
     justify-content: center;
     border-radius: 20px;
     margin: 40px auto;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(219, 112, 147, 0.1);
 }
 
-#finaleTitle {
-    color: #ffd700;
-    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-    font-size: 1.8rem;
-    transition: all 1s ease;
-}
-
-.finale-container {
-    position: relative;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 250px;
-}
-
-.shooting-star {
-    font-size: 5rem;
+#sparkleButton {
+    background: #fff;
+    border: 3px solid #ffd700;
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+    font-size: 2.5rem;
     cursor: pointer;
-    text-shadow: 0 0 30px #fff, 0 0 60px #ffd700;
-    animation: starPulse 1.5s infinite alternate;
-    transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.4);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     -webkit-tap-highlight-color: transparent;
     user-select: none;
-}
-
-@keyframes starPulse {
-    0% { transform: scale(1); filter: brightness(1); }
-    100% { transform: scale(1.2); filter: brightness(1.5); }
-}
-
-.shooting-star.shooting {
-    transform: translateY(-200px) scale(0.1) rotate(180deg) !important;
-    opacity: 0;
-}
-
-/* Locket Styles */
-.locket-wrapper {
-    perspective: 1200px;
+    margin-top: 30px;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    animation: fadeInLocket 1s ease forwards;
-}
-
-@keyframes fadeInLocket {
-    from { opacity: 0; transform: scale(0.5); }
-    to { opacity: 1; transform: scale(1); }
-}
-
-.locket {
-    position: relative;
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
-    cursor: pointer;
-    transform-style: preserve-3d;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-    -webkit-tap-highlight-color: transparent;
-}
-
-.locket-cover {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%, #fff1ba, #d4af37, #996515);
-    border: 4px solid #b8860b;
-    z-index: 3;
-    transform-origin: left center;
-    transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-    backface-visibility: hidden;
-    display: flex;
     justify-content: center;
-    align-items: center;
-    font-size: 3rem;
+    animation: gentlePulse 2s infinite alternate;
 }
 
-.locket-cover::after {
-    content: '❤️';
-    opacity: 0.8;
+@keyframes gentlePulse {
+    0% { transform: scale(1); box-shadow: 0 0 20px rgba(255,215,0,0.3); }
+    100% { transform: scale(1.05); box-shadow: 0 0 35px rgba(255,215,0,0.6); }
 }
 
-.locket-inside {
+#sparkleButton.holding {
+    transform: scale(0.8) !important;
+    box-shadow: 0 0 50px rgba(255, 215, 0, 0.9);
+    animation: none;
+}
+
+.particle {
     position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: #fff;
-    z-index: 1;
-    overflow: hidden;
-    border: 4px solid #d4af37;
-    box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+    pointer-events: none;
+    animation: floatParticle 3s forwards cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: 10;
 }
 
-.locket-inside img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: sepia(30%) contrast(1.1);
+@keyframes floatParticle {
+    0% { transform: translate(0, 0) scale(0) rotate(0deg); opacity: 1; }
+    100% { transform: translate(var(--tx), var(--ty)) scale(1.5) rotate(var(--rot)); opacity: 0; }
 }
 
-.locket.open .locket-cover {
-    transform: rotateY(-180deg);
+.final-revealed-message {
+    z-index: 5;
+    animation: fadeInReveal 2s ease forwards;
 }
 
-.finale-message {
-    margin-top: 40px;
-    font-size: 1.3rem;
-    color: #fff;
-    font-weight: 500;
-    line-height: 1.6;
-    text-shadow: 0 2px 5px rgba(0,0,0,0.8);
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 1s ease 0.5s; /* Delays so it appears after locket opens */
-    text-align: center;
+.final-revealed-message h1 {
+    font-family: 'Georgia', serif;
+    color: #d1476b;
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+}
+
+.final-revealed-message p {
+    font-size: 1.2rem;
+    color: #8b5a2b;
+    margin: 5px 0;
+}
+
+.final-revealed-message .signature {
     font-family: 'Segoe Script', 'Apple Chancery', cursive;
+    font-size: 1.5rem;
+    margin-top: 30px;
+    color: #c2385a;
+    font-weight: bold;
 }
 
-.finale-message.show {
-    opacity: 1;
-    transform: translateY(0);
+@keyframes fadeInReveal {
+    0% { opacity: 0; transform: scale(0.9); }
+    100% { opacity: 1; transform: scale(1); }
 }
 
 /* Scratch Card Styles */

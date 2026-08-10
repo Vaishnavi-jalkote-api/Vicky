@@ -173,25 +173,71 @@ function startTypewriter() {
     setTimeout(typeWriter1, 800);
 }
 
-function triggerFinale() {
-    const star = document.getElementById('theStar');
-    const title = document.getElementById('finaleTitle');
+let sparkleTimer;
+let isSparkleHolding = false;
+
+function startSparkleHold() {
+    isSparkleHolding = true;
+    const btn = document.getElementById('sparkleButton');
+    if(btn) btn.classList.add('holding');
     
-    star.classList.add('shooting');
+    if(navigator.vibrate) navigator.vibrate([50, 50, 50]); 
     
-    if(navigator.vibrate) navigator.vibrate([100, 50, 100]); // Magic pulse
-    
-    setTimeout(() => {
-        star.style.display = 'none';
-        document.getElementById('theLocket').style.display = 'flex';
-        title.innerHTML = "I kept the best part for last...<br><span style='font-size:0.55em; color:#d1bfae; font-weight:normal; font-family:sans-serif; text-shadow:none;'>Tap the locket to open</span>";
-    }, 1000);
+    sparkleTimer = setTimeout(() => {
+        if(isSparkleHolding) {
+            triggerSparkleBurst();
+        }
+    }, 1500); // 1.5 seconds hold
 }
 
-function openLocket() {
-    document.querySelector('.locket').classList.toggle('open');
-    document.getElementById('finaleMessage').classList.toggle('show');
-    if(navigator.vibrate) navigator.vibrate(50);
+function stopSparkleHold() {
+    isSparkleHolding = false;
+    clearTimeout(sparkleTimer);
+    const btn = document.getElementById('sparkleButton');
+    if(btn) btn.classList.remove('holding');
+}
+
+function triggerSparkleBurst() {
+    if(navigator.vibrate) navigator.vibrate([100, 50, 200, 100, 300]);
+    
+    const finale = document.getElementById('sparkleFinale');
+    const content = document.getElementById('finaleContent');
+    const finalMsg = document.getElementById('finalMessage');
+    
+    // Hide button and text
+    if(content) content.style.display = 'none';
+    
+    // Create massive burst of particles
+    const emojis = ['✨', '🦋', '💖', '⭐', '🌸'];
+    
+    for(let i=0; i<60; i++) {
+        setTimeout(() => {
+            const p = document.createElement('div');
+            p.classList.add('particle');
+            p.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+            
+            // Random trajectory
+            const angle = Math.random() * Math.PI * 2;
+            const distance = Math.random() * 300 + 100; // 100 to 400px
+            p.style.setProperty('--tx', `${Math.cos(angle) * distance}px`);
+            p.style.setProperty('--ty', `${Math.sin(angle) * distance}px`);
+            p.style.setProperty('--rot', `${Math.random() * 360}deg`);
+            
+            p.style.left = '50%';
+            p.style.top = '50%';
+            p.style.fontSize = `${Math.random() * 20 + 15}px`;
+            
+            if(finale) finale.appendChild(p);
+            
+            // Cleanup
+            setTimeout(() => p.remove(), 3000);
+        }, i * 30); // Stagger the creation
+    }
+    
+    // Show final message
+    setTimeout(() => {
+        if(finalMsg) finalMsg.style.display = 'block';
+    }, 1200);
 }
 
 function initScratchCard() {
