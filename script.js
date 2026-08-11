@@ -310,3 +310,20 @@ document.addEventListener("visibilitychange", () => {
         document.title = originalTitle;
     }
 });
+
+// Scrolling Tab Title
+document.addEventListener('DOMContentLoaded', () => {
+    const sections = document.querySelectorAll('section[data-tab-title]');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                originalTitle = entry.target.getAttribute('data-tab-title');
+                if (document.visibilityState === "visible") {
+                    document.title = originalTitle;
+                }
+            }
+        });
+    }, { threshold: 0.5 }); // Trigger when 50% of section is visible
+
+    sections.forEach(sec => observer.observe(sec));
+});
