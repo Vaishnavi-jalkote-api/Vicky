@@ -300,3 +300,13 @@ document.addEventListener('DOMContentLoaded', initScratchCard);
 if (document.readyState === 'complete' || document.readyState === 'interactive') {
     initScratchCard();
 }
+
+// Dynamic "Don't Leave Me" Browser Tab Title
+let originalTitle = document.title;
+document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "hidden") {
+        document.title = "Come back! 🥺";
+    } else {
+        document.title = originalTitle;
+    }
+});
