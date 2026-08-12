@@ -1020,3 +1020,11 @@ margin:15px 0;
         opacity: 0;
     }
 }
+
+/* Mobile optimizations for the birthday animation screen */
+@media (max-width: 600px) {
+    .birthday-message {
+        font-size: 1.8rem;
+        line-height: 1.4;
+    }
+}

@@ -107,29 +107,34 @@ window.scrollTo(0,0);
 startTypewriter(); // Trigger the typewriter effect
 }
 function startBirthdayAnimation(){
+    const first=document.getElementById("birthdayText1");
+    const second=document.getElementById("birthdayText2");
+    const third=document.getElementById("birthdayText3");
 
-const first=document.getElementById("birthdayText1");
-const second=document.getElementById("birthdayText2");
-const third=document.getElementById("birthdayText3");
+    first.classList.add("active");
 
-first.classList.add("active");
-
-setTimeout(()=>{
-
-first.classList.remove("active");
-
-second.classList.add("active");
-
-},3000);
-
-setTimeout(()=>{
-
-second.classList.remove("active");
-
-third.classList.add("active");
-
-},6500);
-
+    // Wait 3s, then fade out the first text
+    setTimeout(()=>{
+        first.classList.remove("active");
+        
+        // Wait 1.5s for the fade out to finish, then fade in the second text
+        setTimeout(()=>{
+            second.classList.add("active");
+            
+            // Wait 3s, then fade out the second text
+            setTimeout(()=>{
+                second.classList.remove("active");
+                
+                // Wait 1.5s for fade out, then fade in the third text
+                setTimeout(()=>{
+                    third.classList.add("active");
+                }, 1500);
+                
+            }, 3000);
+            
+        }, 1500);
+        
+    }, 3000);
 }
 
 function startTypewriter() {
