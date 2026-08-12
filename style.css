@@ -983,3 +983,40 @@ margin:15px 0;
     font-size: 0.95rem;
     text-align: center;
 }
+
+/* Falling Petals */
+#petals-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none; /* Crucial so they don't block taps */
+    z-index: 9999;
+    overflow: hidden;
+}
+
+.petal {
+    position: absolute;
+    top: -10vh;
+    user-select: none;
+    animation: fall linear forwards;
+    filter: drop-shadow(0 0 5px rgba(255,182,193,0.6));
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-10vh) rotate(0deg) scale(1);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(110vh) rotate(360deg) scale(0.6);
+        opacity: 0;
+    }
+}

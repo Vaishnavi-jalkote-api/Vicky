@@ -327,3 +327,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
     sections.forEach(sec => observer.observe(sec));
 });
+
+// Falling Petals / Sparkles Animation
+function createPetals() {
+    const container = document.getElementById('petals-container');
+    if(!container) return;
+    
+    // We use soft romantic emojis
+    const elements = ['🌸', '✨', '💖', '🌸', '✨']; 
+    
+    // Create a new petal every 1000ms (1 second) to keep it subtle and premium
+    setInterval(() => {
+        const petal = document.createElement('div');
+        petal.classList.add('petal');
+        petal.innerText = elements[Math.floor(Math.random() * elements.length)];
+        
+        // Random horizontal position across the screen width
+        petal.style.left = Math.random() * 100 + 'vw';
+        
+        // Random fall duration between 12s and 22s (very slow and gentle)
+        const duration = Math.random() * 10 + 12;
+        petal.style.animationDuration = duration + 's';
+        
+        // Random size (some big, some small for depth)
+        petal.style.fontSize = (Math.random() * 12 + 10) + 'px';
+        
+        container.appendChild(petal);
+        
+        // Remove the petal after it finishes falling to prevent slowing down his phone
+        setTimeout(() => {
+            petal.remove();
+        }, duration * 1000);
+        
+    }, 1000);
+}
+
+// Start petals as soon as the page loads
+document.addEventListener('DOMContentLoaded', createPetals);
+// Fallback if script loads after DOM is ready
+if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    createPetals();
+}
