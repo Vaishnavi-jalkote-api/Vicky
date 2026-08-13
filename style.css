@@ -449,8 +449,9 @@ footer {
 }
 .bio-status {
     font-family: 'Courier New', Courier, monospace;
-    color: #fff;
+    color: #8c5f3d;
     font-size: 1.1rem;
+    font-weight: bold;
     letter-spacing: 1px;
     margin-top: 15px;
     transition: color 0.3s ease;
