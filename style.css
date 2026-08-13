@@ -381,9 +381,9 @@ footer {
 
 .stylish-footer {
     display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 12px;
 }
 
 .footer-sign-off {
