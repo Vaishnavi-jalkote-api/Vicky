@@ -373,18 +373,33 @@ box-shadow:0 10px 25px rgba(0,0,0,0.15);
     opacity: 1;
 }
 
-footer{
+footer {
     text-align: center;
-    padding: 10px 20px 30px;
+    padding: 20px 20px 40px;
     background: transparent;
 }
 
 .stylish-footer {
-    font-family: 'Segoe Script', 'Apple Chancery', cursive;
-    font-size: 1.5rem;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-sign-off {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 4px;
     color: #b36b7f;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.footer-name {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 1.6rem;
+    color: #7c5c3b;
     font-style: italic;
-    line-height: 1.5;
 }
 
 .petal{
