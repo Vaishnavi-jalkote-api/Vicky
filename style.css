@@ -374,9 +374,17 @@ box-shadow:0 10px 25px rgba(0,0,0,0.15);
 }
 
 footer{
-text-align:center;
-padding:40px;
-background:#eee4d6;
+    text-align: center;
+    padding: 10px 20px 30px;
+    background: transparent;
+}
+
+.stylish-footer {
+    font-family: 'Segoe Script', 'Apple Chancery', cursive;
+    font-size: 1.5rem;
+    color: #b36b7f;
+    font-style: italic;
+    line-height: 1.5;
 }
 
 .petal{
