@@ -645,9 +645,20 @@ background-image:url("images/imagescard4.jpeg");
 background-image:url("images/imagescard5.jpeg");
 background-position: center bottom;
 }
+
+/* Brighten the dark theater photo slightly by changing the overlay */
+.card5::before {
+    background: rgba(255, 255, 255, 0.05);
+}
+
 .card6{
 background-image:url("images/imagescard6.jpeg");
 background-position: center 20%;
+}
+
+/* Move the text down on card 6 so it doesn't blend into the bright background */
+.card6 span {
+    transform: translateY(35px);
 }
 #birthdayPage{
 
