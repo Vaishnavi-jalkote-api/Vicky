@@ -191,13 +191,14 @@
 
 <div class="sparkle-finale" id="sparkleFinale">
     <div class="finale-content" id="finaleContent">
-        <h2 id="sparkleInstruction" style="font-size: 1.5rem; margin-bottom: 20px;">Tap and hold to unlock the magic...</h2>
-        <button id="sparkleButton" 
-            onpointerdown="startSparkleHold()" 
-            onpointerup="stopSparkleHold()" 
-            onpointerleave="stopSparkleHold()">
-            ✨
-        </button>
+        <h2 id="sparkleInstruction" style="font-size: 1.5rem; margin-bottom: 20px;">Unlock Your Surprise</h2>
+        
+        <div class="biometric-scanner" id="bioScanner" onclick="startBiometricScan()">
+            <div class="fingerprint-icon">👆</div>
+            <div class="scan-line" id="scanLine"></div>
+        </div>
+        <p id="bioStatus" class="bio-status">Place finger to verify identity</p>
+
     </div>
     <div id="finalMessage" class="final-revealed-message" style="display:none;">
         <h1 style="font-size: 2rem;">Once again Happy Birthday Vicky.</h1>

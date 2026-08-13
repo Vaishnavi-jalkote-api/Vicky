@@ -178,28 +178,41 @@ function startTypewriter() {
     setTimeout(typeWriter1, 10000);
 }
 
-let sparkleTimer;
-let isSparkleHolding = false;
+let isScanning = false;
 
-function startSparkleHold() {
-    isSparkleHolding = true;
-    const btn = document.getElementById('sparkleButton');
-    if(btn) btn.classList.add('holding');
+function startBiometricScan() {
+    if(isScanning) return;
+    isScanning = true;
     
-    if(navigator.vibrate) navigator.vibrate([50, 50, 50]); 
+    const scanner = document.getElementById('bioScanner');
+    const status = document.getElementById('bioStatus');
     
-    sparkleTimer = setTimeout(() => {
-        if(isSparkleHolding) {
+    scanner.classList.add('scanning');
+    status.innerText = "Scanning Biometrics...";
+    
+    if(navigator.vibrate) navigator.vibrate([50, 50, 50]);
+    
+    // Step 2
+    setTimeout(() => {
+        status.innerText = "Analyzing Identity...";
+        if(navigator.vibrate) navigator.vibrate([50, 50]);
+    }, 1500);
+    
+    // Step 3 (Success)
+    setTimeout(() => {
+        status.innerText = "Identity Confirmed: Birthday Boy 👑";
+        status.style.color = "#4ade80";
+        scanner.style.borderColor = "#4ade80";
+        scanner.style.boxShadow = "0 0 20px rgba(74, 222, 128, 0.5)";
+        
+        if(navigator.vibrate) navigator.vibrate([100, 100, 200]);
+        
+        // Trigger Finale after short pause
+        setTimeout(() => {
             triggerSparkleBurst();
-        }
-    }, 1500); // 1.5 seconds hold
-}
-
-function stopSparkleHold() {
-    isSparkleHolding = false;
-    clearTimeout(sparkleTimer);
-    const btn = document.getElementById('sparkleButton');
-    if(btn) btn.classList.remove('holding');
+        }, 1200);
+        
+    }, 3000);
 }
 
 function triggerSparkleBurst() {
@@ -209,11 +222,11 @@ function triggerSparkleBurst() {
     const content = document.getElementById('finaleContent');
     const finalMsg = document.getElementById('finalMessage');
     
-    // Hide button and text
+    // Hide scanner and text
     if(content) content.style.display = 'none';
     
     // Create massive burst of particles
-    const emojis = ['✨', '🦋', '💖', '⭐', '🌸'];
+    const emojis = ['✨', '💖', '🎉', '🌟', '👑'];
     
     for(let i=0; i<60; i++) {
         setTimeout(() => {
@@ -241,7 +254,10 @@ function triggerSparkleBurst() {
     
     // Show final message
     setTimeout(() => {
-        if(finalMsg) finalMsg.style.display = 'block';
+        if(finalMsg) {
+            finalMsg.style.display = 'block';
+            setTimeout(() => finalMsg.classList.add('revealed'), 50);
+        }
     }, 1200);
 }
 
