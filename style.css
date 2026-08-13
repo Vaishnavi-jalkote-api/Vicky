@@ -403,55 +403,43 @@ footer {
 }
 
 /* Biometric Scanner Styles */
+/* Biometric Scanner Styles */
 .biometric-scanner {
-    width: 120px;
-    height: 120px;
-    margin: 0 auto 25px;
-    border-radius: 50%;
-    border: 3px solid rgba(179, 107, 127, 0.3);
-    background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.05) 100%);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
     cursor: pointer;
     overflow: hidden;
-    box-shadow: 
-        0 10px 25px rgba(0,0,0,0.1),
-        inset 0 0 15px rgba(255,255,255,0.3);
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: all 0.3s ease;
 }
 .fingerprint-icon {
     display: flex;
     justify-content: center;
     align-items: center;
     opacity: 0.85;
-    filter: drop-shadow(0 0 5px rgba(179, 107, 127, 0.4));
     transition: all 0.3s ease;
 }
 .fingerprint-icon svg {
     width: 70px;
     height: 70px;
     fill: #b36b7f;
-    transition: fill 0.3s ease;
+    transition: fill 0.3s ease, filter 0.3s ease;
 }
 .biometric-scanner:hover {
     transform: scale(1.05);
-    box-shadow: 
-        0 15px 30px rgba(0,0,0,0.15),
-        inset 0 0 25px rgba(255,255,255,0.5);
-    border-color: rgba(179, 107, 127, 0.6);
 }
 .scan-line {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 4px;
+    height: 3px;
     background: #4ade80; 
-    box-shadow: 0 0 15px #4ade80, 0 0 5px #fff;
+    box-shadow: 0 0 12px #4ade80, 0 0 4px #fff;
     display: none;
     z-index: 10;
 }
@@ -464,17 +452,9 @@ footer {
     display: block;
     animation: scanMotion 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
-.biometric-scanner.scanning .fingerprint-icon {
-    filter: drop-shadow(0 0 15px #4ade80) brightness(1.2);
-}
 .biometric-scanner.scanning .fingerprint-icon svg {
     fill: #4ade80;
-}
-.biometric-scanner.scanning {
-    border-color: #4ade80;
-    box-shadow: 
-        0 0 30px rgba(74, 222, 128, 0.4),
-        inset 0 0 20px rgba(74, 222, 128, 0.3);
+    filter: drop-shadow(0 0 8px rgba(74, 222, 128, 0.6));
 }
 .bio-status {
     font-family: 'Courier New', Courier, monospace;
