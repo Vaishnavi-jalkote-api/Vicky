@@ -29,7 +29,7 @@
                id="passwordInput"
                placeholder="Enter Password">
 
-        <button type="button" onclick="checkPassword()">
+        <button type="button" id="loginBtn" onclick="checkPassword()" onpointerenter="handleButtonEscape(event)" ontouchstart="handleButtonEscape(event)">
             ✨ Let's Begin the Journey
         </button>
         <p class="bottom-quote">

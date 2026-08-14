@@ -1,3 +1,43 @@
+function handleButtonEscape(e) {
+    const password = document.getElementById("passwordInput").value;
+    const btn = document.getElementById("loginBtn");
+    
+    // Only escape if they typed something and it's wrong
+    if (password.length > 0 && password !== "Vivvai") {
+        if (e && e.type === "touchstart") {
+            e.preventDefault(); 
+        }
+        
+        // Calculate random position
+        const maxMoveX = Math.min(window.innerWidth * 0.35, 150);
+        const maxMoveY = Math.min(window.innerHeight * 0.25, 150);
+        
+        const randomX = (Math.random() - 0.5) * maxMoveX * 2;
+        const randomY = (Math.random() - 0.5) * maxMoveY * 2;
+        
+        btn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+        
+        const messages = [
+            "Nope! Try catching me first 😜",
+            "Are you sure you are Vicky? 🤨",
+            "Wrong again! 🏃💨",
+            "Too slow! Think harder! 🧠"
+        ];
+        document.getElementById("error").innerHTML = messages[Math.floor(Math.random() * messages.length)];
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const pwdInput = document.getElementById("passwordInput");
+    if(pwdInput) {
+        pwdInput.addEventListener("input", () => {
+            const btn = document.getElementById("loginBtn");
+            if(btn) btn.style.transform = "translate(0px, 0px)";
+            document.getElementById("error").innerHTML = "";
+        });
+    }
+});
+
 function checkPassword(){
 
 const password =
