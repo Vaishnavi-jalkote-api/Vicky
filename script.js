@@ -190,6 +190,7 @@ function startTypewriter() {
         if (i < text1.length) {
             p1.innerHTML += text1.charAt(i);
             i++;
+            p1.scrollIntoView({ behavior: "smooth", block: "end" });
             setTimeout(typeWriter1, 130); // Slower typing speed for readability
         } else {
             p1.classList.remove("typing");
@@ -200,6 +201,7 @@ function startTypewriter() {
                     if (j < text2.length) {
                         p2.innerHTML += text2.charAt(j);
                         j++;
+                        p2.scrollIntoView({ behavior: "smooth", block: "end" });
                         setTimeout(typeWriter2, 130);
                     }
                 }
