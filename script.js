@@ -17,13 +17,7 @@ function handleButtonEscape(e) {
         
         btn.style.transform = `translate(${randomX}px, ${randomY}px)`;
         
-        const messages = [
-            "Nope! Try catching me first 😜",
-            "Are you sure you are Vicky? 🤨",
-            "Wrong again! 🏃💨",
-            "Too slow! Think harder! 🧠"
-        ];
-        document.getElementById("error").innerHTML = messages[Math.floor(Math.random() * messages.length)];
+        document.getElementById("error").innerHTML = "Wrong Password! Penalty: You owe Vaishnavi one extra hug next time you see her! 🤗 Try again!";
     }
 }
 
