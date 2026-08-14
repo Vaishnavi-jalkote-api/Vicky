@@ -215,27 +215,30 @@ function startTypewriter() {
 }
 
 let isScanning = false;
+let scanTimer1, scanTimer2, finaleTimer;
 
-function startBiometricScan() {
+function startPress(e) {
     if(isScanning) return;
-    isScanning = true;
+    if(e && e.preventDefault) {
+        // Prevent default behavior like scrolling or magnifying glass on iOS
+        // Only call on touch events if needed, but pointer events are fine
+    }
     
     const scanner = document.getElementById('bioScanner');
     const status = document.getElementById('bioStatus');
     
     scanner.classList.add('scanning');
-    status.innerText = "Scanning Biometrics...";
+    status.innerText = "Scanning... (Keep holding)";
     
     if(navigator.vibrate) navigator.vibrate([50, 50, 50]);
     
-    // Step 2
-    setTimeout(() => {
-        status.innerText = "Analyzing Identity...";
+    scanTimer1 = setTimeout(() => {
+        status.innerText = "Analyzing Identity... (Hold still)";
         if(navigator.vibrate) navigator.vibrate([50, 50]);
     }, 1500);
     
-    // Step 3 (Success)
-    setTimeout(() => {
+    scanTimer2 = setTimeout(() => {
+        isScanning = true; 
         status.innerText = "Identity Confirmed: Birthday Boy 👑";
         status.style.color = "#4ade80";
         scanner.style.borderColor = "#4ade80";
@@ -243,12 +246,29 @@ function startBiometricScan() {
         
         if(navigator.vibrate) navigator.vibrate([100, 100, 200]);
         
-        // Trigger Finale after short pause
-        setTimeout(() => {
+        finaleTimer = setTimeout(() => {
             triggerSparkleBurst();
         }, 1200);
-        
     }, 3000);
+}
+
+function endPress(e) {
+    if(isScanning) return; // If already confirmed, don't interrupt
+    
+    clearTimeout(scanTimer1);
+    clearTimeout(scanTimer2);
+    
+    const scanner = document.getElementById('bioScanner');
+    const status = document.getElementById('bioStatus');
+    
+    scanner.classList.remove('scanning');
+    status.innerText = "Scan incomplete. Please press and hold.";
+    
+    setTimeout(() => {
+        if(!scanner.classList.contains('scanning') && !isScanning) {
+            status.innerText = "Awaiting the Birthday Boy's fingerprint...";
+        }
+    }, 2000);
 }
 
 function triggerSparkleBurst() {
