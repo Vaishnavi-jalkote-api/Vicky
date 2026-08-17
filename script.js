@@ -17,7 +17,7 @@ function handleButtonEscape(e) {
         
         btn.style.transform = `translate(${randomX}px, ${randomY}px)`;
         
-        document.getElementById("error").innerHTML = "Oops, wrong password! Now you owe Vaishnavi a hug! 🤗";
+        document.getElementById("error").innerHTML = "Wrong Password! Penalty: You owe Vaishnavi one extra hug next time you see her! 🤗 Try again!";
     }
 }
 
