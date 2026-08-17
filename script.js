@@ -447,3 +447,46 @@ document.addEventListener('DOMContentLoaded', createPetals);
 if (document.readyState === 'complete' || document.readyState === 'interactive') {
     createPetals();
 }
+
+// Cinematic Gallery Focus
+document.addEventListener('DOMContentLoaded', () => {
+    const galleryItems = document.querySelectorAll('.gallery img');
+    if(galleryItems.length === 0) return;
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Remove focused class from all others
+                galleryItems.forEach(img => img.classList.remove('focused'));
+                // Add focused class to the one in the center
+                entry.target.classList.add('focused');
+            }
+        });
+    }, {
+        root: document.querySelector('.gallery'),
+        threshold: 0.5,
+        rootMargin: "0px -20% 0px -20%"
+    });
+
+    galleryItems.forEach(item => observer.observe(item));
+});
+
+// Fallback if script loads after DOM is ready
+if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    const galleryItems = document.querySelectorAll('.gallery img');
+    if(galleryItems.length > 0) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    galleryItems.forEach(img => img.classList.remove('focused'));
+                    entry.target.classList.add('focused');
+                }
+            });
+        }, {
+            root: document.querySelector('.gallery'),
+            threshold: 0.5,
+            rootMargin: "0px -20% 0px -20%"
+        });
+        galleryItems.forEach(item => observer.observe(item));
+    }
+}

@@ -252,32 +252,42 @@ color:#7c5c3b;
     to { opacity: 1; transform: translateY(0); }
 }
 
-.gallery{
-display:flex;
-justify-content:center;
-gap:20px;
-flex-wrap:wrap;
-margin-top:30px;
+.gallery {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 20px;
+    padding: 30px calc(50% - 130px); /* Centers the items nicely */
+    margin-top: 10px;
+    align-items: center;
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.gallery::-webkit-scrollbar {
+    display: none;
 }
 
-.gallery img{
-width:180px;
-height:220px;
-object-fit:cover;
-border-radius:15px;
-box-shadow:0 10px 25px rgba(0,0,0,0.12);
-transition:all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-filter: blur(10px) sepia(40%);
-cursor: pointer;
-transform: scale(0.95);
+.gallery img {
+    scroll-snap-align: center;
+    flex: 0 0 260px;
+    width: 260px;
+    height: 340px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    filter: blur(4px) brightness(0.6);
+    transform: scale(0.85);
+    cursor: pointer;
 }
 
-.gallery img:hover, .gallery img:active {
-filter: blur(0) sepia(0);
-transform: scale(1.1) rotate(2deg);
-box-shadow: 0 15px 35px rgba(0,0,0,0.25);
-z-index: 10;
-position: relative;
+.gallery img.focused {
+    filter: blur(0px) brightness(1);
+    transform: scale(1.05);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    z-index: 10;
+    position: relative;
 }
 
 .admire{
