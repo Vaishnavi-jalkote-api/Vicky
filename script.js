@@ -508,6 +508,17 @@ function updateLiveCounter() {
         const yEl = document.getElementById("t-years");
         if(yEl) {
             yEl.innerText = years;
+            
+            // Hide the years box if it's 0
+            if(years === 0) {
+                yEl.parentElement.style.display = 'none';
+            } else {
+                yEl.parentElement.style.display = 'flex';
+                // Smart pluralization: "Year" vs "Years"
+                const label = yEl.nextElementSibling;
+                if(label) label.innerText = years === 1 ? 'Year' : 'Years';
+            }
+
             document.getElementById("t-days").innerText = days;
             document.getElementById("t-hours").innerText = hours;
             document.getElementById("t-mins").innerText = mins;
