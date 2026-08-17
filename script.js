@@ -493,7 +493,7 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
 
 // Live Time Together Counter
 function updateLiveCounter() {
-    const startDate = new Date("April 30, 2026 00:00:00").getTime();
+    const startDate = new Date("April 16, 2026 00:00:00").getTime();
     const now = new Date().getTime();
     const difference = now - startDate;
 
