@@ -490,3 +490,43 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
         galleryItems.forEach(item => observer.observe(item));
     }
 }
+
+// Live Time Together Counter
+function updateLiveCounter() {
+    const startDate = new Date("April 30, 2026 00:00:00").getTime();
+    const now = new Date().getTime();
+    const difference = now - startDate;
+
+    if (difference > 0) {
+        // Calculate time
+        const years = Math.floor(difference / (1000 * 60 * 60 * 24 * 365.25));
+        const days = Math.floor((difference % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const mins = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const secs = Math.floor((difference % (1000 * 60)) / 1000);
+
+        const yEl = document.getElementById("t-years");
+        if(yEl) {
+            yEl.innerText = years;
+            document.getElementById("t-days").innerText = days;
+            document.getElementById("t-hours").innerText = hours;
+            document.getElementById("t-mins").innerText = mins;
+            document.getElementById("t-secs").innerText = secs;
+        }
+    }
+}
+
+// Start the timer
+document.addEventListener('DOMContentLoaded', () => {
+    updateLiveCounter();
+    setInterval(updateLiveCounter, 1000);
+});
+
+// Fallback if loaded late
+if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    updateLiveCounter();
+    if(!window.timerStarted) {
+        setInterval(updateLiveCounter, 1000);
+        window.timerStarted = true;
+    }
+}
