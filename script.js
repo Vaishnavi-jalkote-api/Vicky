@@ -3,7 +3,7 @@ function handleButtonEscape(e) {
     const btn = document.getElementById("loginBtn");
     
     // Only escape if they typed something and it's wrong
-    if (password.length > 0 && password !== "Vivvai") {
+    if (password.length > 0 && password.toLowerCase() !== "vivvai") {
         if (e && e.type === "touchstart") {
             e.preventDefault(); 
         }
@@ -37,7 +37,7 @@ function checkPassword(){
 const password =
 document.getElementById("passwordInput").value;
 
-if(password === "Vivvai"){
+if(password.toLowerCase() === "vivvai"){
 
 document.getElementById("passwordScreen").style.display="none";
 
