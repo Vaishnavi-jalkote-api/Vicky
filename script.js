@@ -203,6 +203,8 @@ function startTypewriter() {
                         j++;
                         p2.scrollIntoView({ behavior: "smooth", block: "end" });
                         setTimeout(typeWriter2, 130);
+                    } else {
+                        p2.classList.remove("typing");
                     }
                 }
                 typeWriter2();
