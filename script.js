@@ -469,7 +469,64 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     galleryItems.forEach(item => observer.observe(item));
+
+    // --- Lightbox & Auto-Play Logic ---
+    const galleryContainer = document.querySelector('.gallery');
+    let autoPlayInterval;
+    let isPaused = false;
+
+    // Smooth auto-scroll
+    function startAutoPlay() {
+        autoPlayInterval = setInterval(() => {
+            if(!isPaused && galleryContainer) {
+                galleryContainer.scrollBy({ left: 1, behavior: 'auto' });
+                
+                // If we hit the end, loop back to the start smoothly
+                if (galleryContainer.scrollLeft + galleryContainer.clientWidth >= galleryContainer.scrollWidth - 2) {
+                    // Small timeout to let them see the last image before snapping back
+                    setTimeout(() => {
+                        galleryContainer.scrollTo({ left: 0, behavior: 'smooth' });
+                    }, 1000);
+                }
+            }
+        }, 40); // 40ms interval for smooth slow scroll
+    }
+
+    startAutoPlay();
+
+    // Pause auto-play when user is interacting
+    const pausePlay = () => { isPaused = true; };
+    const resumePlay = () => { setTimeout(() => { isPaused = false; }, 2000); }; // Wait 2s after touch to resume
+
+    galleryContainer.addEventListener('pointerdown', pausePlay);
+    galleryContainer.addEventListener('pointerup', resumePlay);
+    galleryContainer.addEventListener('pointerleave', resumePlay);
+    galleryContainer.addEventListener('wheel', () => {
+        pausePlay();
+        resumePlay();
+    });
+
+    // Lightbox open logic
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+
+    if(lightbox && lightboxImg) {
+        galleryItems.forEach(img => {
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src;
+                lightbox.style.display = 'flex';
+                isPaused = true; // Pause scrolling while viewing
+            });
+        });
+    }
 });
+
+function closeLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    if(lightbox) {
+        lightbox.style.display = 'none';
+    }
+}
 
 // Fallback if script loads after DOM is ready
 if (document.readyState === 'complete' || document.readyState === 'interactive') {
