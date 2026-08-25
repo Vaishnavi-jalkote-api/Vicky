@@ -23,28 +23,7 @@ overflow-x: hidden;
     100% { background-position: 0% 50%; }
 }
 
-nav{
-position:fixed;
-top:0;
-width:100%;
-background:white;
-padding:15px;
-box-shadow:0 2px 10px rgba(0,0,0,0.08);
-z-index:1000;
-}
 
-nav ul{
-display:flex;
-justify-content:center;
-gap:30px;
-list-style:none;
-}
-
-nav a{
-text-decoration:none;
-color:#7c5c3b;
-font-weight:600;
-}
 
 .hero{
 min-height:100vh;
@@ -54,7 +33,6 @@ justify-content:center;
 align-items:center;
 text-align:center;
 padding:20px;
-padding-top:100px; /* Space for fixed navbar */
 background: linear-gradient(rgba(255,250,245,0.65), rgba(245,237,225,0.75)), url("images/New Background.png");
 background-size: cover;
 background-position: center;
