@@ -541,3 +541,85 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
         window.timerStarted = true;
     }
 }
+
+// --- FIREBASE DYNAMIC GALLERY LOGIC ---
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT_ID.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID"
+};
+
+// Only initialize if keys are added
+if (firebaseConfig.apiKey !== "YOUR_API_KEY") {
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    const storage = firebase.storage();
+
+    // 1. Load existing photos from Firestore
+    db.collection("photos").orderBy("timestamp", "asc").onSnapshot((snapshot) => {
+        const container = document.getElementById('galleryContainer');
+        const addContainer = document.querySelector('.add-photo-container');
+        
+        // Clear all dynamically added images first to prevent duplicates
+        document.querySelectorAll('.dynamic-photo').forEach(el => el.remove());
+
+        snapshot.forEach((doc) => {
+            const data = doc.data();
+            const img = document.createElement('img');
+            img.src = data.url;
+            img.className = 'dynamic-photo';
+            img.alt = "Memory";
+            container.insertBefore(img, addContainer);
+        });
+    });
+
+    // 2. Handle Upload
+    const addBtn = document.getElementById('addPhotoBtn');
+    const fileInput = document.getElementById('photoUploadInput');
+
+    if(addBtn && fileInput) {
+        addBtn.addEventListener('click', () => {
+            const password = prompt("Enter the secret password to upload:");
+            if (password === "Vivvai") { // Password check
+                fileInput.click();
+            } else if (password !== null) {
+                alert("Incorrect password!");
+            }
+        });
+
+        fileInput.addEventListener('change', async (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            addBtn.innerText = "Uploading... ⏳";
+            addBtn.disabled = true;
+
+            try {
+                // Upload to Storage
+                const storageRef = storage.ref();
+                const fileRef = storageRef.child( + "memories/_" + );
+                await fileRef.put(file);
+                
+                // Get URL
+                const downloadURL = await fileRef.getDownloadURL();
+
+                // Save to Firestore
+                await db.collection("photos").add({
+                    url: downloadURL,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                });
+
+                addBtn.innerText = "Add Photo 📸";
+                addBtn.disabled = false;
+            } catch (error) {
+                console.error("Upload failed", error);
+                alert("Upload failed. Make sure your Firebase Security Rules allow reads/writes!");
+                addBtn.innerText = "Add Photo 📸";
+                addBtn.disabled = false;
+            }
+        });
+    }
+}
