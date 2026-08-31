@@ -584,17 +584,47 @@ const addBtn = document.getElementById('addPhotoBtn');
 const fileInput = document.getElementById('photoUploadInput');
 
 if(addBtn && fileInput) {
-    addBtn.addEventListener('click', () => {
+    addBtn.addEventListener('click', async () => {
         if (firebaseConfig.apiKey === "YOUR_API_KEY") {
             alert("Firebase Keys are missing! 🔑\n\nPlease finish creating your free Firebase project, copy the keys, and paste them at the bottom of script.js to activate uploads!");
             return;
         }
 
         const password = prompt("Enter the secret password to upload:");
-        if (password === "Vivvai") { // Password check
+        if (password === null) return; // User cancelled
+
+        addBtn.innerText = "Checking... ⏳";
+        addBtn.disabled = true;
+
+        try {
+            // Check password securely against Firestore Database
+            const adminDoc = await db.collection("settings").doc("admin").get();
+            let correctPassword = "Vivvai"; 
+            
+            if (adminDoc.exists) {
+                correctPassword = adminDoc.data().password;
+            } else {
+                // Auto-create document if it doesn't exist yet
+                await db.collection("settings").doc("admin").set({ password: correctPassword });
+            }
+
+            if (password !== correctPassword) {
+                alert("Incorrect password!");
+                addBtn.innerText = "Add Photo 📸";
+                addBtn.disabled = false;
+                return;
+            }
+
+            // Success! Allow file selection
+            addBtn.innerText = "Add Photo 📸";
+            addBtn.disabled = false;
             fileInput.click();
-        } else if (password !== null) {
-            alert("Incorrect password!");
+
+        } catch (error) {
+            console.error("Database error", error);
+            alert("Database Error: Make sure your Firestore rules allow reads/writes!");
+            addBtn.innerText = "Add Photo 📸";
+            addBtn.disabled = false;
         }
     });
 
@@ -606,15 +636,22 @@ if(addBtn && fileInput) {
         addBtn.disabled = true;
 
         try {
-            // Upload to Storage
-            const storageRef = storage.ref();
-            const fileRef = storageRef.child("memories/" + Date.now() + "_" + file.name);
-            await fileRef.put(file);
-            
-            // Get URL
-            const downloadURL = await fileRef.getDownloadURL();
+            // Execute Upload with a strict 15-second Timeout
+            const uploadTask = async () => {
+                const storageRef = storage.ref();
+                const fileRef = storageRef.child("memories/" + Date.now() + "_" + file.name);
+                await fileRef.put(file);
+                return await fileRef.getDownloadURL();
+            };
 
-            // Save to Firestore
+            const timeoutPromise = new Promise((_, reject) => {
+                setTimeout(() => reject(new Error("TIMEOUT")), 15000);
+            });
+
+            // Race the upload against the timeout clock
+            const downloadURL = await Promise.race([uploadTask(), timeoutPromise]);
+
+            // Save to Firestore Database
             await db.collection("photos").add({
                 url: downloadURL,
                 timestamp: firebase.firestore.FieldValue.serverTimestamp()
@@ -624,7 +661,11 @@ if(addBtn && fileInput) {
             addBtn.disabled = false;
         } catch (error) {
             console.error("Upload failed", error);
-            alert("Upload failed. Make sure your Firebase Security Rules allow reads/writes!");
+            if (error.message === "TIMEOUT") {
+                alert("Upload timed out! Please ensure Firebase Storage is initialized and your security rules are set to test mode.");
+            } else {
+                alert("Upload failed. Make sure your Firebase Security Rules allow reads/writes!");
+            }
             addBtn.innerText = "Add Photo 📸";
             addBtn.disabled = false;
         }
