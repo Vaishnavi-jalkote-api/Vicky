@@ -544,12 +544,13 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
 
 // --- FIREBASE DYNAMIC GALLERY LOGIC ---
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyCs1hnTkv_nspLddORU04mD89J733F0KWs",
+  authDomain: "vicky-memories.firebaseapp.com",
+  projectId: "vicky-memories",
+  storageBucket: "vicky-memories.firebasestorage.app",
+  messagingSenderId: "1034898421760",
+  appId: "1:1034898421760:web:a3869aa6327603757ec0e5",
+  measurementId: "G-KTHRGHGK49"
 };
 
 let db, storage;
