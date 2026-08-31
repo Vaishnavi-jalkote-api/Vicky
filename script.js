@@ -600,7 +600,7 @@ if (firebaseConfig.apiKey !== "YOUR_API_KEY") {
             try {
                 // Upload to Storage
                 const storageRef = storage.ref();
-                const fileRef = storageRef.child( + "memories/_" + );
+                const fileRef = storageRef.child("memories/" + Date.now() + "_" + file.name);
                 await fileRef.put(file);
                 
                 // Get URL
