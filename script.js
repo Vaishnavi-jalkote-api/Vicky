@@ -552,11 +552,12 @@ const firebaseConfig = {
   appId: "YOUR_APP_ID"
 };
 
-// Only initialize if keys are added
+let db, storage;
+
 if (firebaseConfig.apiKey !== "YOUR_API_KEY") {
     firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-    const storage = firebase.storage();
+    db = firebase.firestore();
+    storage = firebase.storage();
 
     // 1. Load existing photos from Firestore
     db.collection("photos").orderBy("timestamp", "asc").onSnapshot((snapshot) => {
@@ -575,51 +576,56 @@ if (firebaseConfig.apiKey !== "YOUR_API_KEY") {
             container.insertBefore(img, addContainer);
         });
     });
+}
 
-    // 2. Handle Upload
-    const addBtn = document.getElementById('addPhotoBtn');
-    const fileInput = document.getElementById('photoUploadInput');
+// 2. Handle Upload (Button is always active, but warns if keys are missing)
+const addBtn = document.getElementById('addPhotoBtn');
+const fileInput = document.getElementById('photoUploadInput');
 
-    if(addBtn && fileInput) {
-        addBtn.addEventListener('click', () => {
-            const password = prompt("Enter the secret password to upload:");
-            if (password === "Vivvai") { // Password check
-                fileInput.click();
-            } else if (password !== null) {
-                alert("Incorrect password!");
-            }
-        });
+if(addBtn && fileInput) {
+    addBtn.addEventListener('click', () => {
+        if (firebaseConfig.apiKey === "YOUR_API_KEY") {
+            alert("Firebase Keys are missing! 🔑\n\nPlease finish creating your free Firebase project, copy the keys, and paste them at the bottom of script.js to activate uploads!");
+            return;
+        }
 
-        fileInput.addEventListener('change', async (e) => {
-            const file = e.target.files[0];
-            if (!file) return;
+        const password = prompt("Enter the secret password to upload:");
+        if (password === "Vivvai") { // Password check
+            fileInput.click();
+        } else if (password !== null) {
+            alert("Incorrect password!");
+        }
+    });
 
-            addBtn.innerText = "Uploading... ⏳";
-            addBtn.disabled = true;
+    fileInput.addEventListener('change', async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
 
-            try {
-                // Upload to Storage
-                const storageRef = storage.ref();
-                const fileRef = storageRef.child("memories/" + Date.now() + "_" + file.name);
-                await fileRef.put(file);
-                
-                // Get URL
-                const downloadURL = await fileRef.getDownloadURL();
+        addBtn.innerText = "Uploading... ⏳";
+        addBtn.disabled = true;
 
-                // Save to Firestore
-                await db.collection("photos").add({
-                    url: downloadURL,
-                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
-                });
+        try {
+            // Upload to Storage
+            const storageRef = storage.ref();
+            const fileRef = storageRef.child("memories/" + Date.now() + "_" + file.name);
+            await fileRef.put(file);
+            
+            // Get URL
+            const downloadURL = await fileRef.getDownloadURL();
 
-                addBtn.innerText = "Add Photo 📸";
-                addBtn.disabled = false;
-            } catch (error) {
-                console.error("Upload failed", error);
-                alert("Upload failed. Make sure your Firebase Security Rules allow reads/writes!");
-                addBtn.innerText = "Add Photo 📸";
-                addBtn.disabled = false;
-            }
-        });
-    }
+            // Save to Firestore
+            await db.collection("photos").add({
+                url: downloadURL,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            });
+
+            addBtn.innerText = "Add Photo 📸";
+            addBtn.disabled = false;
+        } catch (error) {
+            console.error("Upload failed", error);
+            alert("Upload failed. Make sure your Firebase Security Rules allow reads/writes!");
+            addBtn.innerText = "Add Photo 📸";
+            addBtn.disabled = false;
+        }
+    });
 }
